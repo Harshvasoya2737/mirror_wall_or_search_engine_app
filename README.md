@@ -1,4 +1,4 @@
-### mirror_wall
+### mirror_wall_or_search_engine_app
 
 ### Unified Search Engine Application
 
@@ -8,7 +8,7 @@ Introducing the Unified Search Engine Application, a versatile tool designed to 
 
 Forget the hassle of switching between different search engine tabs or apps. With the Unified Search Engine Application, you can seamlessly search across Google, Bing, Yahoo, and DuckDuckGo from a single interface. This consolidation saves time and optimizes productivity, catering to users who rely on diverse search engines for different purposes.
 
-### Intuitive User Interface
+### About Intuitive User Interface UI Of App
 
 The application boasts a meticulously crafted user interface, ensuring a visually pleasing and intuitive experience. The UI allows users to effortlessly select their preferred search engine, customize the app theme (light, dark, or system theme), and navigate seamlessly through its features.
 
