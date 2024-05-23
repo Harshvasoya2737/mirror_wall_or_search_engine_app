@@ -76,8 +76,7 @@ class _MyWebPageState extends State<MyWebPage> {
                                       ),
                                       IconButton(
                                         onPressed: () {
-                                          homeProvider.removeBookmark(
-                                              homeProvider.bookmarks[index]);
+                                          Navigator.pop(context);
                                         },
                                         icon: Icon(Icons.close),
                                       )
@@ -111,8 +110,10 @@ class _MyWebPageState extends State<MyWebPage> {
                                             },
                                             icon: InkWell(
                                                 onTap: () {
-                                                  Navigator.pop(context);
+                                                  homeProvider.removeBookmark(
+                                                      homeProvider.bookmarks[index]);
                                                 },
+
                                                 child: Icon(Icons.close)),
                                           ),
                                         );
