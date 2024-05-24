@@ -29,7 +29,7 @@ Tailor your search experience to your preferences with the Unified Search Engine
 In conclusion, the Unified Search Engine Application revolutionizes the way users interact with search engines. Its comprehensive approach, elegant design, and user-centric features make it a must-have tool for anyone seeking a unified and efficient search experience. Experience the future of search with the Unified Search Engine Application by Harsh Vasoya.
 
 ### Here, I'm sharing you the UI of My mirror_wall_or_search_engine Application
-![mockup_ui](https://github.com/Harshvasoya2737/mirror_wall_or_search_engine_app/assets/148517061/11738768-fe8a-4f45-8f89-e8f3d15eab10)
+![mockup_ui](https://github.com/Harshvasoya2737/mirror_wall_or_search_engine_app/assets/148517061/a9f47e6a-0263-4c0f-8308-081f0c5632f6)
 
 ### Here, I'm also sharing you the Screen-recording Link of My mirror_wall_or_search_engine Application so Kindly on this Link to see the Screen-recording Video
 ***Link =>*** https://drive.google.com/file/d/1d3SFkdorTmlOa6TKMppi5QEXd14UBfOD/view?usp=sharing
