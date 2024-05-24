@@ -30,7 +30,7 @@ In conclusion, the Unified Search Engine Application revolutionizes the way user
 
 ### Designing knowledge
 
-I am also having the good knowledge of Photoshop and Figma where I can do Graphics and UI UX And I can also set ui and graphics in mockup also As a Flutter app developer.
+**I am also having the good knowledge of Photoshop and Figma where I can do Graphics and UI UX And I can also set ui and graphics in mockup also As a Flutter app developer.**
 
 ### Here, I'm sharing you the UI of My mirror_wall_or_search_engine Application 
 ### I had add my Application ui in mockup using Photoshop (For Better experience so you can zoom the ui mockup) 
