@@ -19,6 +19,7 @@ class MyWebPage extends StatefulWidget {
 class _MyWebPageState extends State<MyWebPage> {
   InAppWebViewController? inAppWebViewController;
   PullToRefreshController? pullToRefreshController;
+  TextEditingController searchController = TextEditingController();
 
   get index => null;
 
@@ -55,7 +56,7 @@ class _MyWebPageState extends State<MyWebPage> {
               itemBuilder: (BuildContext context) {
                 return [
                   PopupMenuItem(
-                    child: GestureDetector(
+                    child: InkWell(
                       onTap: () {
                         showModalBottomSheet(
                           context: context,
@@ -76,6 +77,7 @@ class _MyWebPageState extends State<MyWebPage> {
                                       ),
                                       IconButton(
                                         onPressed: () {
+                                          Navigator.pop(context);
                                           Navigator.pop(context);
                                         },
                                         icon: Icon(Icons.close),
@@ -107,14 +109,10 @@ class _MyWebPageState extends State<MyWebPage> {
                                               homeProvider.removeBookmark(
                                                   homeProvider
                                                       .bookmarks[index]);
+                                              Navigator.pop(context);
+                                              Navigator.pop(context);
                                             },
-                                            icon: InkWell(
-                                                onTap: () {
-                                                  homeProvider.removeBookmark(
-                                                      homeProvider.bookmarks[index]);
-                                                },
-
-                                                child: Icon(Icons.close)),
+                                            icon: Icon(Icons.close),
                                           ),
                                         );
                                       },
@@ -128,7 +126,10 @@ class _MyWebPageState extends State<MyWebPage> {
                       },
                       child: Row(
                         children: [
-                          Icon(Icons.bookmark),
+                          CircleAvatar(
+                              backgroundImage: AssetImage(
+                                  "assets/images/book-marked-removebg-preview.png"),
+                              backgroundColor: Colors.transparent),
                           SizedBox(width: 8),
                           Text("All Bookmarks")
                         ],
@@ -147,66 +148,243 @@ class _MyWebPageState extends State<MyWebPage> {
                               content: Column(
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
-                                  ListTile(
-                                    leading: Icon(Icons.search),
-                                    title: Text('Google'),
+                                  InkWell(
                                     onTap: () {
-                                      homeProvider
-                                          .setSearchEngine(1); // Set to Google
+                                      homeProvider.setSearchEngine(1);
                                       inAppWebViewController?.loadUrl(
                                         urlRequest: URLRequest(
                                           url:
                                               WebUri(homeProvider.searchEngine),
                                         ),
                                       );
-                                      Navigator.of(context).pop();
+                                      Navigator.pop(context);
+                                      Navigator.pop(context);
                                     },
+                                    child: Container(
+                                      height: 50,
+                                      width: double.infinity,
+                                      child: Row(
+                                        children: [
+                                          CircleAvatar(
+                                              backgroundImage: AssetImage(
+                                                  "assets/images/goggle-logo-removebg-preview.png"),
+                                              backgroundColor:
+                                                  Colors.transparent),
+                                          Radio(
+                                            value: 1,
+                                            groupValue:
+                                                homeProvider.searchEngineValue,
+                                            onChanged: (value) {
+                                              homeProvider.setSearchEngine(1);
+                                              inAppWebViewController?.loadUrl(
+                                                urlRequest: URLRequest(
+                                                  url: WebUri(homeProvider
+                                                      .searchEngine),
+                                                ),
+                                              );
+                                              Navigator.pop(context);
+                                              Navigator.pop(context);
+                                            },
+                                          ),
+                                          SizedBox(
+                                            width: 8,
+                                          ),
+                                          InkWell(
+                                              onTap: () {
+                                                homeProvider.setSearchEngine(1);
+                                                inAppWebViewController?.loadUrl(
+                                                  urlRequest: URLRequest(
+                                                    url: WebUri(homeProvider
+                                                        .searchEngine),
+                                                  ),
+                                                );
+                                                Navigator.pop(context);
+                                                Navigator.pop(context);
+                                              },
+                                              child: Text("Google")),
+                                        ],
+                                      ),
+                                    ),
                                   ),
-                                  ListTile(
-                                    leading: Icon(Icons.search),
-                                    title: Text('Yahoo'),
+                                  Divider(),
+                                  InkWell(
                                     onTap: () {
-                                      homeProvider
-                                          .setSearchEngine(2); // Set to Yahoo
+                                      homeProvider.setSearchEngine(2);
                                       inAppWebViewController?.loadUrl(
                                         urlRequest: URLRequest(
                                           url:
                                               WebUri(homeProvider.searchEngine),
                                         ),
                                       );
-                                      Navigator.of(context).pop();
+                                      Navigator.pop(context);
+                                      Navigator.pop(context);
                                     },
+                                    child: Container(
+                                      height: 50,
+                                      width: double.infinity,
+                                      child: Row(
+                                        children: [
+                                          CircleAvatar(
+                                              backgroundImage: AssetImage(
+                                                  "assets/images/yahoo_logo-removebg-preview.png"),
+                                              backgroundColor:
+                                                  Colors.transparent),
+                                          Radio(
+                                            value: 2,
+                                            groupValue:
+                                                homeProvider.searchEngineValue,
+                                            onChanged: (value) {
+                                              homeProvider.setSearchEngine(2);
+                                              inAppWebViewController?.loadUrl(
+                                                urlRequest: URLRequest(
+                                                  url: WebUri(homeProvider
+                                                      .searchEngine),
+                                                ),
+                                              );
+                                              Navigator.pop(context);
+                                              Navigator.pop(context);
+                                            },
+                                          ),
+                                          SizedBox(
+                                            width: 8,
+                                          ),
+                                          InkWell(
+                                              onTap: () {
+                                                homeProvider.setSearchEngine(
+                                                    2); // Set to Yahoo
+                                                inAppWebViewController?.loadUrl(
+                                                  urlRequest: URLRequest(
+                                                    url: WebUri(homeProvider
+                                                        .searchEngine),
+                                                  ),
+                                                );
+                                                Navigator.pop(context);
+                                                Navigator.pop(context);
+                                              },
+                                              child: Text("Yahoo")),
+                                        ],
+                                      ),
+                                    ),
                                   ),
-                                  ListTile(
-                                    leading: Icon(Icons.search),
-                                    title: Text('Bing'),
+                                  Divider(),
+                                  InkWell(
                                     onTap: () {
-                                      homeProvider
-                                          .setSearchEngine(3); // Set to Bing
+                                      homeProvider.setSearchEngine(3);
                                       inAppWebViewController?.loadUrl(
                                         urlRequest: URLRequest(
                                           url:
                                               WebUri(homeProvider.searchEngine),
                                         ),
                                       );
-                                      Navigator.of(context).pop();
+                                      Navigator.pop(context);
+                                      Navigator.pop(context);
                                     },
+                                    child: Container(
+                                      width: double.infinity,
+                                      height: 50,
+                                      child: Row(
+                                        children: [
+                                          CircleAvatar(
+                                              backgroundImage: AssetImage(
+                                                  "assets/images/Bing_logo-removebg-preview.png"),
+                                              backgroundColor:
+                                                  Colors.transparent),
+                                          Radio(
+                                            value: 3,
+                                            groupValue:
+                                                homeProvider.searchEngineValue,
+                                            onChanged: (value) {
+                                              homeProvider.setSearchEngine(
+                                                  3); // Set to Bing
+                                              inAppWebViewController?.loadUrl(
+                                                urlRequest: URLRequest(
+                                                  url: WebUri(homeProvider
+                                                      .searchEngine),
+                                                ),
+                                              );
+                                              Navigator.pop(context);
+                                              Navigator.pop(context);
+                                            },
+                                          ),
+                                          SizedBox(
+                                            width: 8,
+                                          ),
+                                          InkWell(
+                                              onTap: () {
+                                                homeProvider.setSearchEngine(3);
+                                                inAppWebViewController?.loadUrl(
+                                                  urlRequest: URLRequest(
+                                                    url: WebUri(homeProvider
+                                                        .searchEngine),
+                                                  ),
+                                                );
+                                                Navigator.pop(context);
+                                                Navigator.pop(context);
+                                              },
+                                              child: Text("Bing"))
+                                        ],
+                                      ),
+                                    ),
                                   ),
-                                  ListTile(
-                                    leading: Icon(Icons.search),
-                                    title: Text('DuckDuckGo'),
+                                  Divider(),
+                                  InkWell(
                                     onTap: () {
-                                      homeProvider.setSearchEngine(
-                                          4); // Set to DuckDuckGo
+                                      homeProvider.setSearchEngine(4);
                                       inAppWebViewController?.loadUrl(
                                         urlRequest: URLRequest(
                                           url:
                                               WebUri(homeProvider.searchEngine),
                                         ),
                                       );
-                                      Navigator.of(context).pop();
+                                      Navigator.pop(context);
+                                      Navigator.pop(context);
                                     },
-                                  ),
+                                    child: Container(
+                                      height: 50,
+                                      width: double.infinity,
+                                      child: Row(
+                                        children: [
+                                          CircleAvatar(
+                                              backgroundImage: AssetImage(
+                                                  "assets/images/duckduckgo_logo-removebg-preview.png"),
+                                              backgroundColor:
+                                                  Colors.transparent),
+                                          Radio(
+                                            value: 4,
+                                            groupValue:
+                                                homeProvider.searchEngineValue,
+                                            onChanged: (value) {
+                                              homeProvider.setSearchEngine(4);
+                                              inAppWebViewController?.loadUrl(
+                                                urlRequest: URLRequest(
+                                                  url: WebUri(homeProvider
+                                                      .searchEngine),
+                                                ),
+                                              );
+                                              Navigator.pop(context);
+                                              Navigator.pop(context);
+                                            },
+                                          ),
+                                          SizedBox(
+                                            width: 8,
+                                          ),
+                                          InkWell(
+                                              onTap: () {
+                                                homeProvider.setSearchEngine(4);
+                                                inAppWebViewController?.loadUrl(
+                                                  urlRequest: URLRequest(
+                                                    url: WebUri(homeProvider
+                                                        .searchEngine),
+                                                  ),
+                                                );
+                                                Navigator.pop(context);
+                                                Navigator.pop(context);
+                                              },
+                                              child: Text("DuckDuckGo")),
+                                        ],
+                                      ),
+                                    ),
+                                  )
                                 ],
                               ),
                             );
@@ -215,13 +393,16 @@ class _MyWebPageState extends State<MyWebPage> {
                       },
                       child: Row(
                         children: [
-                          Icon(Icons.screen_search_desktop_outlined),
-                          SizedBox(width: 10),
-                          Text('Search Engine'),
+                          CircleAvatar(
+                              backgroundImage:
+                                  AssetImage("assets/images/search-3png.png"),
+                              backgroundColor: Colors.transparent),
+                          SizedBox(width: 8),
+                          Text("Choose Search Engine")
                         ],
                       ),
                     ),
-                    value: 'search_engine',
+                    value: 'choose_search_engine',
                   ),
                 ];
               },
@@ -235,7 +416,13 @@ class _MyWebPageState extends State<MyWebPage> {
           children: [
             DrawerHeader(
               decoration: BoxDecoration(
-                color: Colors.blue,
+                gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [
+                      Color(0xff243C98),
+                      Colors.black,
+                    ]),
               ),
               child: Column(
                 children: [
@@ -251,10 +438,21 @@ class _MyWebPageState extends State<MyWebPage> {
             ),
             Divider(),
             ListTile(
-              tileColor: Colors.blue,
-              title: Text(
-                "Choose the Search Engine",
-                style: TextStyle(color: Colors.white),
+              tileColor: Color(0xff243C98),
+              title: Row(
+                children: [
+                  Icon(
+                    Icons.search,
+                    color: Colors.white,
+                  ),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Text(
+                    "Choose the Search Engine",
+                    style: TextStyle(color: Colors.white),
+                  ),
+                ],
               ),
               onTap: () {
                 showModalBottomSheet(
@@ -262,17 +460,14 @@ class _MyWebPageState extends State<MyWebPage> {
                   builder: (context) {
                     return Container(
                       width: double.infinity,
-                      height: 280,
+                      height: 250,
                       child: SingleChildScrollView(
                         child: Column(
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            ListTile(
-                              leading: Icon(Icons.search),
-                              title: Text('Google'),
+                            InkWell(
                               onTap: () {
-                                homeProvider
-                                    .setSearchEngine(1); // Set to Google
+                                homeProvider.setSearchEngine(1);
                                 inAppWebViewController?.loadUrl(
                                   urlRequest: URLRequest(
                                     url: WebUri(homeProvider.searchEngine),
@@ -281,11 +476,58 @@ class _MyWebPageState extends State<MyWebPage> {
                                 Navigator.pop(context);
                                 Navigator.pop(context);
                               },
+                              child: Container(
+                                height: 50,
+                                width: double.infinity,
+                                child: Row(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: CircleAvatar(
+                                          backgroundImage: AssetImage(
+                                              "assets/images/goggle-logo-removebg-preview.png"),
+                                          backgroundColor: Colors.transparent),
+                                    ),
+                                    Radio(
+                                      value: 1,
+                                      groupValue:
+                                          homeProvider.searchEngineValue,
+                                      onChanged: (value) {
+                                        homeProvider.setSearchEngine(
+                                            1); // Set to Google
+                                        inAppWebViewController?.loadUrl(
+                                          urlRequest: URLRequest(
+                                            url: WebUri(
+                                                homeProvider.searchEngine),
+                                          ),
+                                        );
+                                        Navigator.pop(context);
+                                        Navigator.pop(context);
+                                      },
+                                    ),
+                                    SizedBox(
+                                      width: 8,
+                                    ),
+                                    InkWell(
+                                        onTap: () {
+                                          homeProvider.setSearchEngine(
+                                              1); // Set to Google
+                                          inAppWebViewController?.loadUrl(
+                                            urlRequest: URLRequest(
+                                              url: WebUri(
+                                                  homeProvider.searchEngine),
+                                            ),
+                                          );
+                                          Navigator.pop(context);
+                                          Navigator.pop(context);
+                                        },
+                                        child: Text("Google")),
+                                  ],
+                                ),
+                              ),
                             ),
                             Divider(),
-                            ListTile(
-                              leading: Icon(Icons.search),
-                              title: Text('Yahoo'),
+                            InkWell(
                               onTap: () {
                                 homeProvider.setSearchEngine(2); // Set to Yahoo
                                 inAppWebViewController?.loadUrl(
@@ -296,11 +538,58 @@ class _MyWebPageState extends State<MyWebPage> {
                                 Navigator.pop(context);
                                 Navigator.pop(context);
                               },
+                              child: Container(
+                                height: 50,
+                                width: double.infinity,
+                                child: Row(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: CircleAvatar(
+                                          backgroundImage: AssetImage(
+                                              "assets/images/yahoo_logo-removebg-preview.png"),
+                                          backgroundColor: Colors.transparent),
+                                    ),
+                                    Radio(
+                                      value: 2,
+                                      groupValue:
+                                          homeProvider.searchEngineValue,
+                                      onChanged: (value) {
+                                        homeProvider
+                                            .setSearchEngine(2); // Set to Yahoo
+                                        inAppWebViewController?.loadUrl(
+                                          urlRequest: URLRequest(
+                                            url: WebUri(
+                                                homeProvider.searchEngine),
+                                          ),
+                                        );
+                                        Navigator.pop(context);
+                                        Navigator.pop(context);
+                                      },
+                                    ),
+                                    SizedBox(
+                                      width: 8,
+                                    ),
+                                    InkWell(
+                                        onTap: () {
+                                          homeProvider.setSearchEngine(
+                                              2); // Set to Yahoo
+                                          inAppWebViewController?.loadUrl(
+                                            urlRequest: URLRequest(
+                                              url: WebUri(
+                                                  homeProvider.searchEngine),
+                                            ),
+                                          );
+                                          Navigator.pop(context);
+                                          Navigator.pop(context);
+                                        },
+                                        child: Text("Yahoo")),
+                                  ],
+                                ),
+                              ),
                             ),
                             Divider(),
-                            ListTile(
-                              leading: Icon(Icons.search),
-                              title: Text('Bing'),
+                            InkWell(
                               onTap: () {
                                 homeProvider.setSearchEngine(3); // Set to Bing
                                 inAppWebViewController?.loadUrl(
@@ -311,11 +600,58 @@ class _MyWebPageState extends State<MyWebPage> {
                                 Navigator.pop(context);
                                 Navigator.pop(context);
                               },
+                              child: Container(
+                                width: double.infinity,
+                                height: 50,
+                                child: Row(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: CircleAvatar(
+                                        backgroundImage: AssetImage(
+                                            "assets/images/Bing_logo-removebg-preview.png"),
+                                      ),
+                                    ),
+                                    Radio(
+                                      value: 3,
+                                      groupValue:
+                                          homeProvider.searchEngineValue,
+                                      onChanged: (value) {
+                                        homeProvider
+                                            .setSearchEngine(3); // Set to Bing
+                                        inAppWebViewController?.loadUrl(
+                                          urlRequest: URLRequest(
+                                            url: WebUri(
+                                                homeProvider.searchEngine),
+                                          ),
+                                        );
+                                        Navigator.pop(context);
+                                        Navigator.pop(context);
+                                      },
+                                    ),
+                                    SizedBox(
+                                      width: 8,
+                                    ),
+                                    InkWell(
+                                        onTap: () {
+                                          homeProvider.setSearchEngine(
+                                              3); // Set to Bing
+                                          inAppWebViewController?.loadUrl(
+                                            urlRequest: URLRequest(
+                                              url: WebUri(
+                                                  homeProvider.searchEngine),
+                                            ),
+                                          );
+                                          Navigator.pop(context);
+                                          Navigator.pop(context);
+                                        },
+                                        child: Text("Bing"))
+                                  ],
+                                ),
+                              ),
                             ),
                             Divider(),
-                            ListTile(
-                              leading: Icon(Icons.search),
-                              title: Text('DuckDuckGo'),
+                            InkWell(
                               onTap: () {
                                 homeProvider
                                     .setSearchEngine(4); // Set to DuckDuckGo
@@ -327,7 +663,56 @@ class _MyWebPageState extends State<MyWebPage> {
                                 Navigator.pop(context);
                                 Navigator.pop(context);
                               },
-                            ),
+                              child: Container(
+                                height: 50,
+                                width: double.infinity,
+                                child: Row(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: CircleAvatar(
+                                        backgroundImage: AssetImage(
+                                            "assets/images/duckduckgo_logo-removebg-preview.png"),
+                                      ),
+                                    ),
+                                    Radio(
+                                      value: 4,
+                                      groupValue:
+                                          homeProvider.searchEngineValue,
+                                      onChanged: (value) {
+                                        homeProvider.setSearchEngine(
+                                            4); // Set to DuckDuckGo
+                                        inAppWebViewController?.loadUrl(
+                                          urlRequest: URLRequest(
+                                            url: WebUri(
+                                                homeProvider.searchEngine),
+                                          ),
+                                        );
+                                        Navigator.pop(context);
+                                        Navigator.pop(context);
+                                      },
+                                    ),
+                                    SizedBox(
+                                      width: 8,
+                                    ),
+                                    InkWell(
+                                        onTap: () {
+                                          homeProvider.setSearchEngine(
+                                              4); // Set to DuckDuckGo
+                                          inAppWebViewController?.loadUrl(
+                                            urlRequest: URLRequest(
+                                              url: WebUri(
+                                                  homeProvider.searchEngine),
+                                            ),
+                                          );
+                                          Navigator.pop(context);
+                                          Navigator.pop(context);
+                                        },
+                                        child: Text("DuckDuckGo")),
+                                  ],
+                                ),
+                              ),
+                            )
                           ],
                         ),
                       ),
@@ -337,41 +722,69 @@ class _MyWebPageState extends State<MyWebPage> {
               },
             ),
             Divider(),
-            SizedBox(
-              height: 40,
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Consumer<ThemeProvider>(
-                builder: (BuildContext context, themeProvider, Widget? child) {
-                  return Row(
-                    children: [
-                      Text(
-                        "Theme :",
-                        style: TextStyle(fontSize: 20),
-                      ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      DropdownButton(
-                        dropdownColor: Colors.black38,
-                        value: themeProvider.themeMode,
-                        items: [
-                          DropdownMenuItem(child: Text("System"), value: 0),
-                          DropdownMenuItem(child: Text("Light"), value: 1),
-                          DropdownMenuItem(child: Text("Dark"), value: 2),
-                        ],
-                        onChanged: (newValue) {
-                          themeProvider.changeTheme(newValue ?? 0);
-                        },
-                      ),
-                    ],
-                  );
-                },
+            Container(
+              width: double.infinity,
+              decoration: BoxDecoration(color: Color(0xff243C98)),
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Consumer<ThemeProvider>(
+                  builder:
+                      (BuildContext context, themeProvider, Widget? child) {
+                    return Row(
+                      children: [
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Icon(
+                          Icons.ac_unit,
+                          color: Colors.white,
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Text(
+                          "Theme :",
+                          style: TextStyle(fontSize: 20, color: Colors.white),
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        DropdownButton(
+                          dropdownColor: Colors.teal,
+                          value: themeProvider.themeMode,
+                          items: [
+                            DropdownMenuItem(
+                                child: Text(
+                                  "System",
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                                value: 0),
+                            DropdownMenuItem(
+                                child: Text(
+                                  "Light",
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                                value: 1),
+                            DropdownMenuItem(
+                                child: Text(
+                                  "Dark",
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                                value: 2),
+                          ],
+                          onChanged: (newValue) {
+                            themeProvider.changeTheme(newValue ?? 0);
+                          },
+                        ),
+                      ],
+                    );
+                  },
+                ),
               ),
             ),
+            Divider(),
             SizedBox(
-              height: 383.5,
+              height: 407.5,
             ),
             InkWell(
               onTap: () {
@@ -448,23 +861,25 @@ class _MyWebPageState extends State<MyWebPage> {
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: TextFormField(
-                    onChanged: (value) {
-                      String search =
-                          "${homeProvider.searchEngine}search?q=$value";
-                      inAppWebViewController?.loadUrl(
-                          urlRequest: URLRequest(url: WebUri(search)));
-                    },
-                    onFieldSubmitted: (value) {
-                      String search =
-                          "${homeProvider.searchEngine}search?q=$value";
-                      inAppWebViewController?.loadUrl(
-                          urlRequest: URLRequest(url: WebUri(search)));
-                    },
+                    controller: searchController,
                     decoration: InputDecoration(
-                        labelText: "\t\tSearch or type web address",
-                        suffixIcon: Icon(Icons.search),
-                        border: OutlineInputBorder(
-                            borderSide: BorderSide(width: 50))),
+                      labelText: "\t\tSearch or type web address",
+                      border:
+                          OutlineInputBorder(borderSide: BorderSide(width: 50)),
+                      suffixIcon: Icon(Icons.search),
+                    ),
+                    onFieldSubmitted: (value) {
+                      var url = Uri.parse(value);
+                      if (url.scheme.isEmpty) {
+                        url = Uri.parse(homeProvider.searchEngine + value);
+                      }
+                      inAppWebViewController?.loadUrl(
+                        urlRequest: URLRequest(
+                          url: WebUri(url.toString()),
+                        ),
+                      );
+                      searchController.clear();
+                    },
                   ),
                 ),
               ),
@@ -472,6 +887,9 @@ class _MyWebPageState extends State<MyWebPage> {
           ),
           Row(
             children: [
+              SizedBox(
+                width: 10,
+              ),
               IconButton(
                 onPressed: () {
                   Navigator.push(context, MaterialPageRoute(
@@ -491,13 +909,18 @@ class _MyWebPageState extends State<MyWebPage> {
                   var url = await inAppWebViewController?.getUrl();
                   if (url != null) {
                     homeProvider.addBookmark(url.toString());
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                        content: Padding(
+                      padding: const EdgeInsets.only(left: 115),
+                      child: Text("Bookmarks added"),
+                    )));
                   }
                 },
                 icon: Icon(Icons.bookmark_add_outlined),
                 iconSize: 40,
               ),
               SizedBox(
-                width: 15,
+                width: 25,
               ),
               IconButton(
                 onPressed: () {
@@ -505,9 +928,6 @@ class _MyWebPageState extends State<MyWebPage> {
                 },
                 icon: Icon(Icons.chevron_left),
                 iconSize: 40,
-              ),
-              SizedBox(
-                width: 10,
               ),
               SizedBox(
                 width: 25,
