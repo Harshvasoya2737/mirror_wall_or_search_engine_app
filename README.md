@@ -28,7 +28,12 @@ Tailor your search experience to your preferences with the Unified Search Engine
 
 In conclusion, the Unified Search Engine Application revolutionizes the way users interact with search engines. Its comprehensive approach, elegant design, and user-centric features make it a must-have tool for anyone seeking a unified and efficient search experience. Experience the future of search with the Unified Search Engine Application by Harsh Vasoya.
 
-### Here, I'm sharing you the UI of My mirror_wall_or_search_engine Application
+### Designing knowledge
+
+I am also having the good knowledge of Photoshop and Figma where I can do Graphics and UI UX And I can also set ui and graphics in mockup also As a Flutter app developer.
+
+### Here, I'm sharing you the UI of My mirror_wall_or_search_engine Application 
+### I had add my Application ui in mockup using Photoshop (For Better experience so you can zoom the ui mockup) 
 ![mockup_ui](https://github.com/Harshvasoya2737/mirror_wall_or_search_engine_app/assets/148517061/a9f47e6a-0263-4c0f-8308-081f0c5632f6)
 
 ### Here, I'm also sharing you the Screen-recording Link of My mirror_wall_or_search_engine Application so Kindly on this Link to see the Screen-recording Video
